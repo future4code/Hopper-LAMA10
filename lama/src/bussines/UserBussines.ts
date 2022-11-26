@@ -49,7 +49,7 @@ export class UserBussines {
             if(!user){
                 throw new Error("")
             }
-            const isValidPassword = await this.hashManager.compare(password,user.getID())
+            const isValidPassword = await this.hashManager.compare(password,user.getPassword())
             if(!isValidPassword){
                 throw new Error("")
             }
