@@ -27,7 +27,13 @@ export class UserBussines {
             const id = this.idGenerate.generate()
             const hashPassword = await this.hashManager.hash(password) 
             const userRole = this.setRole.setRole(role)
-            const newUser = new User(id,name,email,hashPassword,userRole)
+            const newUser:User = {
+                id,
+                name,
+                email,
+                password:hashPassword,
+                role:userRole
+            }
             await this.userBaseDatabase.insertUser(newUser)
         
             const token = this.authenticator.generateToken({id,role:userRole})
@@ -40,21 +46,26 @@ export class UserBussines {
        
 
     }
+
     public async Login({email,password}:UserInputLoginDTO){
         try {
             if(!email || !password){
                 throw new Error("")
             }
             const user = await this.userBaseDatabase.findUserByEmail(email)
+
             if(!user){
                 throw new Error("")
             }
-            const isValidPassword = await this.hashManager.compare(password,user.getPassword())
+
+            const isValidPassword = await this.hashManager.compare(password,user.password)
+
             if(!isValidPassword){
                 throw new Error("")
             }
-            const id = user.getID()
-            const role = user.getRole()
+
+            const id = user.id
+            const role = user.role
             const token = this.authenticator.generateToken({id,role})
             return token
         } catch (error:any) {

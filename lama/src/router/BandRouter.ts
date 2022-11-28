@@ -12,6 +12,7 @@ const bandBaseDatabase = new BandBaseDatabase()
 const bandBussines = new BandBussines(bandBaseDatabase, idGenerate, authenticator)
 const bandController = new BandController(bandBussines)
 
-bandRouter.post("/band", (req, res) => bandController.signupBand(req, res))
+bandRouter.post("/create", (req, res) => bandController.signupBand(req, res))
+bandRouter.get("/details", (req, res)=> bandController.bandDetails(req,res))
 
 export default bandRouter

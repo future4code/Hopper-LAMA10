@@ -16,7 +16,7 @@ export class UserController {
                 role
             }
             const token = await this.userBussines.Create(input)
-            res.status(200).send({message:"Usuario ciado com sucesso!",token})
+            res.status(200).send({message:"Usuario criado com sucesso!",token})
         } catch (error: any) {
             res.statusCode = 400
             let message = error.sqlMessage || error.message
@@ -31,6 +31,7 @@ export class UserController {
             email,
             password
         } 
+        
         const token = await this.userBussines.Login(input)
         res.status(200).send(token)
      } catch (error: any) {
