@@ -1,0 +1,58 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+  "name":"Mario",
+  "email":"mario_labenu@hotmail.com",
+  "password":"123456789",
+  "role":"ADMIN"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+  "email":"mario_labenu@hotmail.com",
+  "password":"123456789"
+}
+
+
+###
+POST http://localhost:3003/band/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2NzhmNWRjLWY4YzMtNDhhZi1hMGFmLTFjMTZlZjNmOGE5MiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2OTU0MzkwNiwiZXhwIjoxNjY5NTQ3NTA2fQ.s2wr6RtDQwQCR0DjHmMtCMiB35qn7xKxacJweDhljXc
+Content-Type: application/json
+
+{
+  "name": "Frank Ocean",
+  "music_genre": "R&B",
+  "responsible": "Christopher Edwin Breaux"
+}
+
+
+###
+GET http://localhost:3003/band/details
+Content-Type: application/json
+
+{
+  "idBand": "6a9cf6fe-26a6-4887-9091-3b0d85a07dfa"
+}
+
+###
+POST http://localhost:3003/show/create
+Content-Type: application/json
+
+{
+  "week_day": "sexta",
+  "start_time": 15,
+  "end_time": 16,
+  "band_id": "6a9cf6fe-26a6-4887-9091-3b0d85a07dfa"
+}
+
+###
+GET http://localhost:3003/show/details
+Content-Type: application/json
+
+{
+  "week_day": "sexta"
+}

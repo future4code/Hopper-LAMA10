@@ -18,6 +18,6 @@ const userBussines = new UserBussines(userBaseDatabase, idGenerate, hashManager,
 const userController = new UserController(userBussines)
 
 userRouter.post("/signup", (req, res) => userController.signup(req, res))
-userRouter.post("login", (req, res) => userController.login(req, res))
+userRouter.post("/login", (req, res) => userController.login(req, res))
 
 export default userRouter

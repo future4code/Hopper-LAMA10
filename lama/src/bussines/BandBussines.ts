@@ -1,5 +1,5 @@
 import { BandBaseDatabase } from "../data/BandBaseDatabase";
-import { Band, BandInputDTO } from "../model/Band";
+import { Band, BandDetailsInputDTO, BandInputDTO } from "../model/Band";
 import { BandRepository } from "./BandRepository";
 import { IAuthenticator, IIdGenarete } from "./Port";
 
@@ -21,6 +21,21 @@ export class BandBussines{
                 const id = this.idGenerate.generate()
                 const newBand = new Band(id,name,musicGenre,responsible)
                 await this.bandBaseDatabase.insertBand(newBand)
+            } catch (error:any) {
+                throw new Error(error.message)
+            }
+        }
+
+        public async BandDetails({idBand}:BandDetailsInputDTO){
+            try {
+                
+                if(!idBand){
+                    throw new Error("")
+                }
+
+                const result = await this.bandBaseDatabase.bandDetails(idBand)
+                return result
+
             } catch (error:any) {
                 throw new Error(error.message)
             }
